@@ -1,0 +1,47 @@
+import numpy as np
+import random
+import pickle
+import pathlib
+#import networkx as nx
+import collections
+import queue
+import pseudoflow
+import time
+import copy
+import matplotlib.pyplot as plt
+
+
+
+
+fontsize = 20
+
+
+
+plt.rc('font',family='Times New Roman')
+plt.rcParams['xtick.labelsize'] = fontsize
+plt.rcParams['ytick.labelsize'] = fontsize
+# X、Y轴刻度标签字体大小
+plt.rcParams['axes.labelsize'] = fontsize
+plt.figure(figsize=(5.4, 4.5))
+input_values=[1,2,3,4,5,6,7,8,9,10]
+A=np.array([[0.03905177116394043, 0.028652667999267578, 0.02893972396850586, 0.02665400505065918, 0.03057551383972168, 0.030507564544677734, 0.027446985244750977, 0.0302581787109375, 0.032625675201416016, 0.02525019645690918],
+[0.05013322830200195, 0.04273104667663574, 0.035721540451049805, 0.07761144638061523, 0.047539472579956055, 0.043984413146972656, 0.04591631889343262, 0.06462645530700684, 0.04798722267150879, 0.042617082595825195]
+])
+
+
+plt.plot(input_values,A[0,:],"-s",linewidth=2,label="chain with one container")
+plt.plot(input_values,A[1,:],"-v",linewidth=2,label="chain with two containers")
+
+#plt.plot(input_values,squares1,linewidth=2)
+# 设置图表标题，并给坐标轴加上标签
+plt.xlabel("Experiment Number",fontsize=fontsize)
+plt.ylabel("Invoke Time (s)",fontsize=fontsize)
+# 设置刻度标记的大小
+plt.tick_params(axis='both',labelsize=fontsize)
+plt.xticks(input_values,input_values)
+ax=plt.gca()
+ax.ticklabel_format(style='sci', scilimits=(-1,2), axis='y')
+# plt.tick_params(axis='both',labelsize=fontsize)
+plt.legend(fontsize=18,loc = 0,ncol=2,labelspacing=0.1,columnspacing=0.5,handlelength=1)
+plt.savefig('exp.pdf',bbox_inches='tight')
+plt.show()
